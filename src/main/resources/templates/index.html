@@ -60,13 +60,13 @@
                 <div class="media-left">
                     <a href="#">
                         <img class="media-object img-rounded"
-                             th:src="${article.user.avatar_url}">
+                             th:src="${article.user.avatarUrl}">
                     </a>
                 </div>
                 <div class="media-body">
                     <h4 class="media-heading" th:text="${article.title}"></h4>
                     <span th:text="${article.description}"></span><br>
-                    <span class="text-desc"><span th:text="${article.commentCount}"></span>个回复·<span th:text="${article.viewCount}"></span>次浏览 最近的回复时间</span>
+                    <span class="text-desc"><span th:text="${article.commentCount}"></span>个回复·<span th:text="${article.viewCount}"></span>次浏览· <span th:text="${#dates.format(article.gmtCreate, 'dd MMMM yyyy')}"></span> 发布时间</span>
                 </div>
             </div>
 

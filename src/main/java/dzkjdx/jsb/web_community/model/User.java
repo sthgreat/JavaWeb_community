@@ -6,11 +6,11 @@ import lombok.Data;
 public class User {
     private Integer Id;
     private String name;
-    private Long gmt_create;
-    private Long gmt_modified;
+    private Long gmtCreate;
+    private Long gmtModified;
     private String account_id;
     private String token;
-    private String avatar_url;
+    private String avatarUrl;
     private String bio;
 
 }
