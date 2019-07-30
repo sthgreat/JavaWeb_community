@@ -31,7 +31,6 @@ public class PublishController {
     public String doPublish(@RequestParam("title") String title,
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
-                            HttpServletRequest request,
                             @CookieValue(value = "token") String token,
                             Model model){
         model.addAttribute("title",title);
@@ -51,8 +50,7 @@ public class PublishController {
             return "publish";
         }
 
-        User user = null;
-        user = userMapper.find_By_Token(token);
+        User user = userMapper.find_By_Token(token);
         if(user!=null){
             model.addAttribute("user", user);
         }

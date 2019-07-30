@@ -1,10 +1,11 @@
-package dzkjdx.jsb.web_community.model;
+package dzkjdx.jsb.web_community.dto;
 
+import dzkjdx.jsb.web_community.model.User;
 import lombok.Data;
 
 @Data
-public class Article {
-    private Long id;
+public class ArticleDTO {
+    private Integer id;
     private String title;
     private String description;
     private String tag;
@@ -12,6 +13,7 @@ public class Article {
     private Long gmtModified;
     private Integer creator;
     private Integer commentCount;
-    private Integer likeCount;
     private Integer viewCount;
+    private Integer likeCount;
+    private User user;
 }
