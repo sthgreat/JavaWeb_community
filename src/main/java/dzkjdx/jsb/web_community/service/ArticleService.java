@@ -22,12 +22,23 @@ public class ArticleService {
     private ArticleMapper articleMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
+
+        PaginationDTO paginationDTO = new PaginationDTO();
+        Integer totalCount = articleMapper.count();
+        paginationDTO.setPagination(totalCount,page,size);
+
+        if (page < 1) {
+            page = 1;
+        }
+        if (page > paginationDTO.getTotalPage()) {
+            page = paginationDTO.getTotalPage();
+        }
+
         Integer offset = size * (page - 1);
 
         List<Article> articles = articleMapper.list(offset, size);
         List<ArticleDTO> articleDTOS = new ArrayList<>();
 
-        PaginationDTO paginationDTO = new PaginationDTO();
         for (Article article : articles) {
             User user = userMapper.find_By_ID(article.getCreator());
             ArticleDTO articleDTO = new ArticleDTO();
@@ -36,8 +47,6 @@ public class ArticleService {
             articleDTOS.add(articleDTO);
         }
         paginationDTO.setArticles(articleDTOS);
-        Integer totalCount = articleMapper.count();
-        paginationDTO.setPagination(totalCount,page,size);
 
         return paginationDTO;
     }
