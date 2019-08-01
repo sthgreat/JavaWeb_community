@@ -20,4 +20,10 @@ public interface ArticleMapper {
 
     @Select("select count(1) from article")
     Integer count();
+
+    @Select("select * from article where creator = #{userId} limit #{offset},#{size}")
+    List<Article> listByUserId(@Param(value = "userId") Integer userId, @Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
+
+    @Select("select count(1) from article where creator = #{userId}")
+    Integer countByUserId(@Param(value = "userId") Integer userId);
 }
