@@ -83,4 +83,11 @@ public class ArticleService {
 
         return paginationDTO;
     }
+
+    public ArticleDTO getById(Integer id) {
+        Article article = articleMapper.getById(id);
+        ArticleDTO articleDTO = new ArticleDTO();
+        BeanUtils.copyProperties(article, articleDTO);
+        return articleDTO;
+    }
 }

@@ -19,9 +19,6 @@ public class PublishController {
     @Autowired
     private ArticleMapper articleMapper;
 
-    @Autowired
-    private UserMapper userMapper;
-
     @GetMapping("/publish")
     public String publish(){
         return "publish";
@@ -32,7 +29,8 @@ public class PublishController {
                             @RequestParam("description") String description,
                             @RequestParam("tag") String tag,
                             @CookieValue(value = "token") String token,
-                            Model model){
+                            Model model,
+                            HttpServletRequest request){
         model.addAttribute("title",title);
         model.addAttribute("tag", tag);
         model.addAttribute("description",description);
@@ -42,7 +40,7 @@ public class PublishController {
             return "publish";
         }
         if(description==null||description==""){
-            model.addAttribute("error","问题不能为空");
+            model.addAttribute("error","文章不能为空");
             return "publish";
         }
         if(tag==null||tag==""){
@@ -50,10 +48,7 @@ public class PublishController {
             return "publish";
         }
 
-        User user = userMapper.find_By_Token(token);
-        if(user!=null){
-            model.addAttribute("user", user);
-        }
+        User user = (User) request.getSession().getAttribute("user");
         if(user==null){
             model.addAttribute("error","用户未登录");
             return "publish";

@@ -1,5 +1,6 @@
 package dzkjdx.jsb.web_community.mapper;
 
+import dzkjdx.jsb.web_community.dto.ArticleDTO;
 import dzkjdx.jsb.web_community.model.Article;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,4 +27,7 @@ public interface ArticleMapper {
 
     @Select("select count(1) from article where creator = #{userId}")
     Integer countByUserId(@Param(value = "userId") Integer userId);
+
+    @Select("select * from article where id = #{id}")
+    Article getById(@Param(value = "id") Integer id);
 }
