@@ -88,6 +88,8 @@ public class ArticleService {
         Article article = articleMapper.getById(id);
         ArticleDTO articleDTO = new ArticleDTO();
         BeanUtils.copyProperties(article, articleDTO);
+        User user = userMapper.find_By_ID(article.getCreator());
+        articleDTO.setUser(user);
         return articleDTO;
     }
 }
