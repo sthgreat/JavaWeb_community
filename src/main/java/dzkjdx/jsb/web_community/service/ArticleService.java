@@ -35,7 +35,12 @@ public class ArticleService {
         }
         paginationDTO.setPagination(totalPage, page);
 
-        Integer offset = size * (page - 1);
+        Integer offset = null;
+        if(page==0){
+            offset = 0;
+        }else {
+            offset = size * (page - 1);
+        }
 
         List<Article> articles = articleMapper.list(offset, size);
         List<ArticleDTO> articleDTOS = new ArrayList<>();

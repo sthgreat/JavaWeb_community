@@ -1,7 +1,6 @@
 package dzkjdx.jsb.web_community.controller;
 
 import dzkjdx.jsb.web_community.dto.ArticleDTO;
-import dzkjdx.jsb.web_community.mapper.ArticleMapper;
 import dzkjdx.jsb.web_community.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
