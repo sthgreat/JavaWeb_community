@@ -2,10 +2,7 @@ package dzkjdx.jsb.web_community.mapper;
 
 import dzkjdx.jsb.web_community.dto.ArticleDTO;
 import dzkjdx.jsb.web_community.model.Article;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -30,4 +27,7 @@ public interface ArticleMapper {
 
     @Select("select * from article where id = #{id}")
     Article getById(@Param(value = "id") Integer id);
+
+    @Update("update article set title = #{title},description=#{description},gmt_modified=#{gmtModified},tag=#{tag} where id = #{id}")
+    void update(Article article);
 }

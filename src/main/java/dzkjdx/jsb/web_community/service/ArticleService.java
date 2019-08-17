@@ -97,4 +97,17 @@ public class ArticleService {
         articleDTO.setUser(user);
         return articleDTO;
     }
+
+    public void createOrUpdate(Article article) {
+        if(article.getId() == null){
+            //创建
+            article.setGmtCreate(System.currentTimeMillis());
+            article.setGmtModified(article.getGmtCreate());
+            articleMapper.create(article);
+        }else {
+            //更新
+            article.setGmtModified(article.getGmtCreate());
+            articleMapper.update(article);
+        }
+    }
 }

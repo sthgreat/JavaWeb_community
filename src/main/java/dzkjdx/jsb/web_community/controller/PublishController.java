@@ -1,23 +1,33 @@
 package dzkjdx.jsb.web_community.controller;
 
+import dzkjdx.jsb.web_community.dto.ArticleDTO;
 import dzkjdx.jsb.web_community.mapper.ArticleMapper;
 import dzkjdx.jsb.web_community.mapper.UserMapper;
 import dzkjdx.jsb.web_community.model.Article;
 import dzkjdx.jsb.web_community.model.User;
+import dzkjdx.jsb.web_community.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class PublishController {
     @Autowired
-    private ArticleMapper articleMapper;
+    private ArticleService articleService;
+
+    @GetMapping("/publish/{id}")
+    public String edit(@PathVariable(name = "id") Integer id,
+                       Model model){
+        ArticleDTO article = articleService.getById(id);
+        model.addAttribute("title",article.getTitle());
+        model.addAttribute("tag", article.getTag());
+        model.addAttribute("description",article.getDescription());
+        model.addAttribute("id", article.getId());
+        return "publish";
+    }
 
     @GetMapping("/publish")
     public String publish(){
@@ -25,9 +35,10 @@ public class PublishController {
     }
 
     @PostMapping("/publish")
-    public String doPublish(@RequestParam("title") String title,
-                            @RequestParam("description") String description,
-                            @RequestParam("tag") String tag,
+    public String doPublish(@RequestParam(value = "title", required = false) String title,
+                            @RequestParam(value = "description", required = false) String description,
+                            @RequestParam(value = "tag", required = false) String tag,
+                            @RequestParam(value = "id", required = false) Integer id,
                             @CookieValue(value = "token") String token,
                             Model model,
                             HttpServletRequest request){
@@ -59,10 +70,8 @@ public class PublishController {
         article.setTag(tag);
         article.setDescription(description);
         article.setCreator(user.getId());
-        article.setGmtCreate(System.currentTimeMillis());
-        article.setGmtModified(article.getGmtCreate());
-
-        articleMapper.create(article);
+        article.setId(id);
+        articleService.createOrUpdate(article);
         return "redirect:/";
     }
 }
