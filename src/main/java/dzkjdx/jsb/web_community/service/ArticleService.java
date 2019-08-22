@@ -101,6 +101,7 @@ public class ArticleService {
         User user = userMapper.find_By_ID(article.getCreator());
         articleDTO.setUser(user);
         return articleDTO;
+
     }
 
     public void createOrUpdate(Article article) {
@@ -111,8 +112,12 @@ public class ArticleService {
             articleMapper.create(article);
         }else {
             //更新
-            article.setGmtModified(article.getGmtCreate());
+            article.setGmtModified(System.currentTimeMillis());
             articleMapper.update(article);
         }
+    }
+
+    public void addViewCount(Integer id) {
+        articleMapper.addCountView_ById(id);
     }
 }

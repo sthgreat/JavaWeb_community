@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-@ControllerAdvice
+//@ControllerAdvice
 public class CustomizeExceptionHandler {
     @ExceptionHandler(Exception.class)
     ModelAndView handleControllerException(Throwable e, Model model){

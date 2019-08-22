@@ -11,3 +11,6 @@ Mybatis中的驼峰匹配需要注意 <br>
 springboot自身提供了错误处理方法，具体的需要实现@ControllerAdvice、@ExceptionHandler等注解方法<br>
 ##10086、快捷键
 ctrl+F12 查看类中方法 <br>
+alt+F7 查看方法的引用 <br>
+##10087、还存在问题
+访问时的数据库并发操作<br>

@@ -17,6 +17,7 @@ public class ArticleController {
     public String article(@PathVariable(name = "id") Integer id,
                           Model model){
         ArticleDTO articleDTO = articleService.getById(id);
+        articleService.addViewCount(id);//累加阅读数
         model.addAttribute("article", articleDTO);
         return "article";
     }

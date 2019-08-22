@@ -30,4 +30,7 @@ public interface ArticleMapper {
 
     @Update("update article set title = #{title},description=#{description},gmt_modified=#{gmtModified},tag=#{tag} where id = #{id}")
     void update(Article article);
+
+    @Update("update article set view_count = view_count + 1 where id = #{id}")
+    void addCountView_ById(Integer id);
 }
