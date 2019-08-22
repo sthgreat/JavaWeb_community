@@ -1,5 +1,7 @@
 package dzkjdx.jsb.web_community.service;
 
+import dzkjdx.jsb.web_community.Excpetion.CustomizeErrorCode;
+import dzkjdx.jsb.web_community.Excpetion.CustomizeException;
 import dzkjdx.jsb.web_community.dto.ArticleDTO;
 import dzkjdx.jsb.web_community.dto.PaginationDTO;
 import dzkjdx.jsb.web_community.mapper.ArticleMapper;
@@ -91,6 +93,9 @@ public class ArticleService {
 
     public ArticleDTO getById(Integer id) {
         Article article = articleMapper.getById(id);
+        if(article==null){
+            throw new CustomizeException(CustomizeErrorCode.ARTICLE_NOT_FOUND);
+        }
         ArticleDTO articleDTO = new ArticleDTO();
         BeanUtils.copyProperties(article, articleDTO);
         User user = userMapper.find_By_ID(article.getCreator());
