@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class User {
-    private Integer Id;
+    private Long Id;
     private String name;
     private Long gmtCreate;
     private Long gmtModified;

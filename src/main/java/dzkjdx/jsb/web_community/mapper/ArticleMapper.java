@@ -1,6 +1,5 @@
 package dzkjdx.jsb.web_community.mapper;
 
-import dzkjdx.jsb.web_community.dto.ArticleDTO;
 import dzkjdx.jsb.web_community.model.Article;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
@@ -20,17 +19,20 @@ public interface ArticleMapper {
     Integer count();
 
     @Select("select * from article where creator = #{userId} limit #{offset},#{size}")
-    List<Article> listByUserId(@Param(value = "userId") Integer userId, @Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
+    List<Article> listByUserId(@Param(value = "userId") Long userId, @Param(value = "offset") Integer offset, @Param(value = "size") Integer size);
 
     @Select("select count(1) from article where creator = #{userId}")
-    Integer countByUserId(@Param(value = "userId") Integer userId);
+    Integer countByUserId(@Param(value = "userId") Long userId);
 
     @Select("select * from article where id = #{id}")
-    Article getById(@Param(value = "id") Integer id);
+    Article getById(@Param(value = "id") Long id);
 
     @Update("update article set title = #{title},description=#{description},gmt_modified=#{gmtModified},tag=#{tag} where id = #{id}")
     void update(Article article);
 
     @Update("update article set view_count = view_count + 1 where id = #{id}")
-    void addCountView_ById(Integer id);
+    void addCountView_ById(Long id);
+
+    @Update("update article set comment_count = comment_count + #{commentCount} where id = #{id}")
+    void addCommentCount(Article article);
 }

@@ -59,7 +59,7 @@ public class ArticleService {
         return paginationDTO;
     }
 
-    public PaginationDTO list(Integer userId, Integer page, Integer size) {
+    public PaginationDTO list(Long userId, Integer page, Integer size) {
 
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
@@ -91,7 +91,7 @@ public class ArticleService {
         return paginationDTO;
     }
 
-    public ArticleDTO getById(Integer id) {
+    public ArticleDTO getById(Long id) {
         Article article = articleMapper.getById(id);
         if(article==null){
             throw new CustomizeException(CustomizeErrorCode.ARTICLE_NOT_FOUND);
@@ -109,6 +109,9 @@ public class ArticleService {
             //创建
             article.setGmtCreate(System.currentTimeMillis());
             article.setGmtModified(article.getGmtCreate());
+            article.setCommentCount(0);
+            article.setLikeCount(0);
+            article.setViewCount(0);
             articleMapper.create(article);
         }else {
             //更新
@@ -117,7 +120,7 @@ public class ArticleService {
         }
     }
 
-    public void addViewCount(Integer id) {
+    public void addViewCount(Long id) {
         articleMapper.addCountView_ById(id);
     }
 }
