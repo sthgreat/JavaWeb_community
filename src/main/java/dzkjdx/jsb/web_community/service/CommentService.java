@@ -36,7 +36,7 @@ private ArticleMapper articleMapper;
                 commentMapper.insert(comment);
             }
         }else {
-            //对问题的评论
+            //对文章的评论
             Article article = articleMapper.getById(comment.getParentId());
             if(article==null){
                 throw new CustomizeException(CustomizeErrorCode.ARTICLE_NOT_FOUND);
