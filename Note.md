@@ -13,5 +13,7 @@ springboot自身提供了错误处理方法，具体的需要实现@ControllerAd
 ctrl+F12 查看类中方法 <br>
 alt+F7 查看方法的引用 <br>
 ctrl+F6 （光标放在函数的参数括号内按）修改全局参数顺序 <br>
+shift+F6 变换所有类名 <br>
+ctrl+e 查看浏览过的历史纪录 <br>
 ##10087、还存在问题
 访问时的数据库并发操作<br>

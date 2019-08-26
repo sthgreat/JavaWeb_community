@@ -18,5 +18,7 @@ alt+F7 查看方法的引用 <br>
 ctrl+F6 （光标放在函数的参数括号内按）修改全局参数顺序 <br>
 ctrl+alt+b 查询当前interface中方法的所有实现类 <br>
 ctrl+alt+l 代码格式化 <br>
+shift+F6 变换所有类名 <br>
+ctrl+e 查看浏览过的历史纪录 <br>
 ###10087、还存在问题 <br>
 访问时的数据库并发操作<br>

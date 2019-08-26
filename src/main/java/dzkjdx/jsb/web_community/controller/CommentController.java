@@ -1,20 +1,16 @@
 package dzkjdx.jsb.web_community.controller;
 
 import dzkjdx.jsb.web_community.Excpetion.CustomizeErrorCode;
-import dzkjdx.jsb.web_community.dto.CommentDTO;
+import dzkjdx.jsb.web_community.dto.CommentCreateDTO;
 import dzkjdx.jsb.web_community.dto.ResultDTO;
-import dzkjdx.jsb.web_community.mapper.CommentMapper;
 import dzkjdx.jsb.web_community.model.Comment;
 import dzkjdx.jsb.web_community.model.User;
 import dzkjdx.jsb.web_community.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class CommentController {
@@ -23,7 +19,7 @@ public class CommentController {
 
     @ResponseBody
     @RequestMapping(value = "/comment", method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDTO commentDTO,
+    public Object post(@RequestBody CommentCreateDTO commentCreateDTO,
                        HttpServletRequest request){//自动匹配传来的json格式数据到commentDTO中（反序列化）
         User user = (User) request.getSession().getAttribute("user");
         if(user==null){
@@ -31,12 +27,12 @@ public class CommentController {
         }
 
         Comment comment = new Comment();
-        comment.setParentId(commentDTO.getParentId());
-        comment.setContent(commentDTO.getContent());
-        comment.setType(commentDTO.getType());
+        comment.setParentId(commentCreateDTO.getParentId());
+        comment.setContent(commentCreateDTO.getContent());
+        comment.setType(commentCreateDTO.getType());
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(System.currentTimeMillis());
-        comment.setCommentator(1);
+        comment.setCommentator(user.getId());
         commentService.insert(comment);
         return ResultDTO.okOf();
     }
