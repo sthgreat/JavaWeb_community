@@ -49,6 +49,11 @@ private UserMapper userMapper;
                 throw new CustomizeException(CustomizeErrorCode.COMMENT_NOT_FOUND);
             }else {
                 commentMapper.insert(comment);
+                //增加评论数
+                Comment parentComment = new Comment();
+                parentComment.setId(comment.getParentId());
+                parentComment.setCommentCount(1);
+                commentMapper.addCommentCount(parentComment);
             }
         }else {
             //对文章的评论
@@ -63,8 +68,9 @@ private UserMapper userMapper;
     }
 
 
-    public List<CommentDTO> listByArticleId(Long id) {
-        List<Comment> comments = commentMapper.selectByid_list(id, CommentTypeEnum.ARTICLE.getType());
+
+    public List<CommentDTO> listByTargetId(Long id, Integer type) {
+        List<Comment> comments = commentMapper.selectByid_list(id, type);
 
         //获取去重的评论人
         if(comments.size()==0){

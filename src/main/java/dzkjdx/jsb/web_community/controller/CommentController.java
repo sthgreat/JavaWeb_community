@@ -2,7 +2,9 @@ package dzkjdx.jsb.web_community.controller;
 
 import dzkjdx.jsb.web_community.Excpetion.CustomizeErrorCode;
 import dzkjdx.jsb.web_community.dto.CommentCreateDTO;
+import dzkjdx.jsb.web_community.dto.CommentDTO;
 import dzkjdx.jsb.web_community.dto.ResultDTO;
+import dzkjdx.jsb.web_community.enums.CommentTypeEnum;
 import dzkjdx.jsb.web_community.model.Comment;
 import dzkjdx.jsb.web_community.model.User;
 import dzkjdx.jsb.web_community.service.CommentService;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class CommentController {
@@ -39,5 +42,12 @@ public class CommentController {
         comment.setCommentator(user.getId());
         commentService.insert(comment);
         return ResultDTO.okOf();
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/comment/{id}", method = RequestMethod.GET)
+    public ResultDTO<List<CommentDTO>> comments(@PathVariable(name = "id") Long id){
+        List<CommentDTO> commentDTOS = commentService.listByTargetId(id, CommentTypeEnum.COMMENT.getType());
+        return ResultDTO.okOf(commentDTOS);
     }
 }

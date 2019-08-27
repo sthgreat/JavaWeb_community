@@ -1,8 +1,8 @@
 package dzkjdx.jsb.web_community.controller;
 
 import dzkjdx.jsb.web_community.dto.ArticleDTO;
-import dzkjdx.jsb.web_community.dto.CommentCreateDTO;
 import dzkjdx.jsb.web_community.dto.CommentDTO;
+import dzkjdx.jsb.web_community.enums.CommentTypeEnum;
 import dzkjdx.jsb.web_community.service.ArticleService;
 import dzkjdx.jsb.web_community.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class ArticleController {
                           Model model){
         ArticleDTO articleDTO = articleService.getById(id);
 
-        List<CommentDTO> comments = commentService.listByArticleId(id);
+        List<CommentDTO> comments = commentService.listByTargetId(id, CommentTypeEnum.ARTICLE.getType());
 
 
         articleService.addViewCount(id);//累加阅读数

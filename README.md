@@ -20,5 +20,8 @@ ctrl+alt+b 查询当前interface中方法的所有实现类 <br>
 ctrl+alt+l 代码格式化 <br>
 shift+F6 变换所有类名 <br>
 ctrl+e 查看浏览过的历史纪录 <br>
+ctrl+alt+v 抽变量 <br>
+ctrl+alt+p 抽参数 <br>
+ctrl+alt+b 抽方法 <br>
 ###10087、还存在问题 <br>
 访问时的数据库并发操作<br>

@@ -2,10 +2,7 @@ package dzkjdx.jsb.web_community.mapper;
 
 import dzkjdx.jsb.web_community.enums.CommentTypeEnum;
 import dzkjdx.jsb.web_community.model.Comment;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -22,4 +19,7 @@ public interface CommentMapper {
 
     @Select("select * from comment where parent_id = #{id} and type = #{commentType}")
     List<Comment> selectByid_list(@Param(value = "id") Long id, @Param(value = "commentType") Integer type);
+
+    @Update("update comment set comment_count = comment_count + #{commentCount} where id = #{id}")
+    void addCommentCount(Comment parentComment);
 }
