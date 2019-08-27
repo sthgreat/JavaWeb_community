@@ -26,12 +26,14 @@ public class ArticleController {
                           Model model){
         ArticleDTO articleDTO = articleService.getById(id);
 
+        List<ArticleDTO> relatedArticles = articleService.SelectRelated(articleDTO);
         List<CommentDTO> comments = commentService.listByTargetId(id, CommentTypeEnum.ARTICLE.getType());
 
 
         articleService.addViewCount(id);//累加阅读数
         model.addAttribute("article", articleDTO);
         model.addAttribute("comments", comments);
+        model.addAttribute("relatedArticles",relatedArticles);
         return "article";
     }
 

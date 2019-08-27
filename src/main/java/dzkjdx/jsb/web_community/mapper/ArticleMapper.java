@@ -1,5 +1,6 @@
 package dzkjdx.jsb.web_community.mapper;
 
+import dzkjdx.jsb.web_community.dto.ArticleDTO;
 import dzkjdx.jsb.web_community.model.Article;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
@@ -35,4 +36,7 @@ public interface ArticleMapper {
 
     @Update("update article set comment_count = comment_count + #{commentCount} where id = #{id}")
     void addCommentCount(Article article);
+
+    @Select("select * from article where id!=#{id} and tag regexp #{tag}")
+    List<Article> SelectRelated(@Param(value = "id") Long id, @Param(value = "tag") String tag);
 }

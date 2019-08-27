@@ -8,12 +8,14 @@ import dzkjdx.jsb.web_community.mapper.ArticleMapper;
 import dzkjdx.jsb.web_community.mapper.UserMapper;
 import dzkjdx.jsb.web_community.model.Article;
 import dzkjdx.jsb.web_community.model.User;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ArticleService {
@@ -122,5 +124,19 @@ public class ArticleService {
 
     public void addViewCount(Long id) {
         articleMapper.addCountView_ById(id);
+    }
+
+    public List<ArticleDTO> SelectRelated(ArticleDTO queryDTO) {
+        if(StringUtils.isBlank(queryDTO.getTag())){
+            return new ArrayList<>();
+        }
+        String tag = StringUtils.replace(queryDTO.getTag(),",","|");
+        List<Article> articles= articleMapper.SelectRelated(queryDTO.getId(), tag);
+        List<ArticleDTO> articleDTOS = articles.stream().map(a -> {
+            ArticleDTO articleDTO = new ArticleDTO();
+            BeanUtils.copyProperties(a, articleDTO);
+            return articleDTO;
+        }).collect(Collectors.toList());
+        return articleDTOS;
     }
 }
