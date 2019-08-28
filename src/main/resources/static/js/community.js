@@ -101,6 +101,11 @@ function collapseComments(e) {
                     }).append(mediaElement);
                     subCommentContainer.prepend(commentElement);
                 });
+                //展开二级评论
+                comments.addClass("in");
+                // 标记二级评论展开状态
+                e.setAttribute("data-collapse", "in");
+                e.classList.add("active");
             });
         }
     }

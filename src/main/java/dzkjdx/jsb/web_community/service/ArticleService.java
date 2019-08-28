@@ -3,6 +3,7 @@ package dzkjdx.jsb.web_community.service;
 import dzkjdx.jsb.web_community.Excpetion.CustomizeErrorCode;
 import dzkjdx.jsb.web_community.Excpetion.CustomizeException;
 import dzkjdx.jsb.web_community.dto.ArticleDTO;
+import dzkjdx.jsb.web_community.dto.NotificationDTO;
 import dzkjdx.jsb.web_community.dto.PaginationDTO;
 import dzkjdx.jsb.web_community.mapper.ArticleMapper;
 import dzkjdx.jsb.web_community.mapper.UserMapper;
@@ -56,7 +57,7 @@ public class ArticleService {
             articleDTO.setUser(user);
             articleDTOS.add(articleDTO);
         }
-        paginationDTO.setArticles(articleDTOS);
+        paginationDTO.setData(articleDTOS);
 
         return paginationDTO;
     }
@@ -88,7 +89,7 @@ public class ArticleService {
             articleDTO.setUser(user);
             articleDTOS.add(articleDTO);
         }
-        paginationDTO.setArticles(articleDTOS);
+        paginationDTO.setData(articleDTOS);
 
         return paginationDTO;
     }
