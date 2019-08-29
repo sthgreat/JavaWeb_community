@@ -3,6 +3,7 @@ package dzkjdx.jsb.web_community.service;
 import dzkjdx.jsb.web_community.Excpetion.CustomizeErrorCode;
 import dzkjdx.jsb.web_community.Excpetion.CustomizeException;
 import dzkjdx.jsb.web_community.dto.ArticleDTO;
+import dzkjdx.jsb.web_community.dto.ArticleQueryDTO;
 import dzkjdx.jsb.web_community.dto.NotificationDTO;
 import dzkjdx.jsb.web_community.dto.PaginationDTO;
 import dzkjdx.jsb.web_community.mapper.ArticleMapper;
@@ -26,10 +27,21 @@ public class ArticleService {
     @Autowired
     private ArticleMapper articleMapper;
 
-    public PaginationDTO list(Integer page, Integer size) {
+    public PaginationDTO list(String search, Integer page, Integer size) {
+        if(StringUtils.isNoneBlank(search)){
+            search = StringUtils.replace(search," ","|");
+        }
+
         PaginationDTO paginationDTO = new PaginationDTO();
         Integer totalPage;
-        Integer totalCount = articleMapper.count();
+        ArticleQueryDTO articleQueryDTO = new ArticleQueryDTO();
+        articleQueryDTO.setSearch(search);
+        Integer totalCount;
+        if(StringUtils.isNoneBlank(search)){
+            totalCount = articleMapper.countBySearch(articleQueryDTO);
+        }else {
+            totalCount = articleMapper.count();
+        }
         totalPage = (totalCount % size == 0) ? (totalCount / size) : ((totalCount / size) + 1);
 
         if (page < 1) {
@@ -47,7 +59,15 @@ public class ArticleService {
             offset = size * (page - 1);
         }
 
-        List<Article> articles = articleMapper.list(offset, size);
+        articleQueryDTO.setSize(size);
+        articleQueryDTO.setPage(offset);
+        List<Article> articles = null;
+        if(StringUtils.isNoneBlank(search)){
+            articles = articleMapper.selectBySearch(articleQueryDTO);
+        }else {
+            articles = articleMapper.list(offset,size);
+        }
+
         List<ArticleDTO> articleDTOS = new ArrayList<>();
 
         for (Article article : articles) {

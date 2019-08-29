@@ -1,6 +1,7 @@
 package dzkjdx.jsb.web_community.mapper;
 
 import dzkjdx.jsb.web_community.dto.ArticleDTO;
+import dzkjdx.jsb.web_community.dto.ArticleQueryDTO;
 import dzkjdx.jsb.web_community.model.Article;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Component;
@@ -39,4 +40,10 @@ public interface ArticleMapper {
 
     @Select("select * from article where id!=#{id} and tag regexp #{tag}")
     List<Article> SelectRelated(@Param(value = "id") Long id, @Param(value = "tag") String tag);
+
+    @Select("select count(*) from article where title regexp #{search}")
+    Integer countBySearch(ArticleQueryDTO articleQueryDTO);
+
+    @Select("select * from article where title regexp #{search} order by gmt_create desc limit #{page},#{size}")
+    List<Article> selectBySearch(ArticleQueryDTO articleQueryDTO);
 }
