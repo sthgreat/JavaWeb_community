@@ -1,0 +1,47 @@
+2019-08-29 16:39:55.217  INFO 3248 --- [main] d.j.w.WebCommunityApplication            : Starting WebCommunityApplication on DESKTOP-3HN2FNP with PID 3248 (E:\JavaWeb\web_community\target\classes started by jsb in E:\JavaWeb\web_community)
+2019-08-29 16:39:55.221  INFO 3248 --- [main] d.j.w.WebCommunityApplication            : No active profile set, falling back to default profiles: default
+2019-08-29 16:39:56.555  INFO 3248 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-08-29 16:39:56.576  INFO 3248 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-08-29 16:39:56.577  INFO 3248 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.21]
+2019-08-29 16:39:56.723  INFO 3248 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-08-29 16:39:56.723  INFO 3248 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1465 ms
+2019-08-29 16:39:57.095  INFO 3248 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-08-29 16:39:57.205  INFO 3248 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-08-29 16:39:57.433  INFO 3248 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-08-29 16:39:57.436  INFO 3248 --- [main] d.j.w.WebCommunityApplication            : Started WebCommunityApplication in 2.647 seconds (JVM running for 3.641)
+2019-08-29 16:40:41.605  INFO 3248 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-08-29 16:40:41.606  INFO 3248 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-08-29 16:40:41.613  INFO 3248 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-08-29 16:40:42.312 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_Token    : ==>  Preparing: select * from user where token = ? 
+2019-08-29 16:40:42.334 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_Token    : ==> Parameters: 6bf02c52-2242-4d2c-a7d0-1c39594468ed(String)
+2019-08-29 16:40:42.353 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_Token    : <==      Total: 1
+2019-08-29 16:40:42.361 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.m.N.selectByReceiverId             : ==>  Preparing: select count(1) from notification where notify_status != 1 
+2019-08-29 16:40:42.362 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.m.N.selectByReceiverId             : ==> Parameters: 
+2019-08-29 16:40:42.363 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.m.N.selectByReceiverId             : <==      Total: 1
+2019-08-29 16:40:42.385 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.ArticleMapper.count         : ==>  Preparing: select count(1) from article 
+2019-08-29 16:40:42.386 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.ArticleMapper.count         : ==> Parameters: 
+2019-08-29 16:40:42.388 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.ArticleMapper.count         : <==      Total: 1
+2019-08-29 16:40:42.389 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.ArticleMapper.list          : ==>  Preparing: select * from article limit ?,? 
+2019-08-29 16:40:42.389 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.ArticleMapper.list          : ==> Parameters: 0(Integer), 5(Integer)
+2019-08-29 16:40:42.393 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.ArticleMapper.list          : <==      Total: 5
+2019-08-29 16:40:42.395 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==>  Preparing: select * from user where id = ? 
+2019-08-29 16:40:42.395 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==> Parameters: 24(Long)
+2019-08-29 16:40:42.396 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : <==      Total: 1
+2019-08-29 16:40:42.403 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==>  Preparing: select * from user where id = ? 
+2019-08-29 16:40:42.403 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==> Parameters: 24(Long)
+2019-08-29 16:40:42.405 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : <==      Total: 1
+2019-08-29 16:40:42.406 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==>  Preparing: select * from user where id = ? 
+2019-08-29 16:40:42.407 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==> Parameters: 24(Long)
+2019-08-29 16:40:42.408 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : <==      Total: 1
+2019-08-29 16:40:42.409 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==>  Preparing: select * from user where id = ? 
+2019-08-29 16:40:42.410 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==> Parameters: 24(Long)
+2019-08-29 16:40:42.411 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : <==      Total: 1
+2019-08-29 16:40:42.412 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==>  Preparing: select * from user where id = ? 
+2019-08-29 16:40:42.412 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : ==> Parameters: 24(Long)
+2019-08-29 16:40:42.414 DEBUG 3248 --- [http-nio-8080-exec-1] d.j.w.mapper.UserMapper.find_By_ID       : <==      Total: 1
+2019-08-29 16:40:42.762 DEBUG 3248 --- [http-nio-8080-exec-2] d.j.w.mapper.UserMapper.find_By_Token    : ==>  Preparing: select * from user where token = ? 
+2019-08-29 16:40:42.763 DEBUG 3248 --- [http-nio-8080-exec-2] d.j.w.mapper.UserMapper.find_By_Token    : ==> Parameters: 6bf02c52-2242-4d2c-a7d0-1c39594468ed(String)
+2019-08-29 16:40:42.764 DEBUG 3248 --- [http-nio-8080-exec-2] d.j.w.mapper.UserMapper.find_By_Token    : <==      Total: 1
+2019-08-29 16:40:42.765 DEBUG 3248 --- [http-nio-8080-exec-2] d.j.w.m.N.selectByReceiverId             : ==>  Preparing: select count(1) from notification where notify_status != 1 
+2019-08-29 16:40:42.765 DEBUG 3248 --- [http-nio-8080-exec-2] d.j.w.m.N.selectByReceiverId             : ==> Parameters: 
+2019-08-29 16:40:42.766 DEBUG 3248 --- [http-nio-8080-exec-2] d.j.w.m.N.selectByReceiverId             : <==      Total: 1
