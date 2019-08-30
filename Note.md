@@ -1,19 +1,17 @@
-#此文件记录开发中的坑（心得笔记）
-##开发组件：SpringBoot、Mybatis、Mysql、BootStrap、thymeleaf
-##1、驼峰匹配
-Mybatis中的驼峰匹配需要注意 <br>
-未开启且在未设置resultMap时，数据库字段需要与model中属性相同 <br>
-驼峰匹配指的是字段xxx_xxx与xxxXxx匹配 <br>
-开启指令：mybatis.configuration.map-underscore-to-camel-case=true
-##2、热部署
-不需要重启服务器即可让修改的文件生效 <br>
-##3、有关错误处理
-springboot自身提供了错误处理方法，具体的需要实现@ControllerAdvice、@ExceptionHandler等注解方法<br>
-##10086、快捷键
-ctrl+F12 查看类中方法 <br>
-alt+F7 查看方法的引用 <br>
-ctrl+F6 （光标放在函数的参数括号内按）修改全局参数顺序 <br>
-shift+F6 变换所有类名 <br>
-ctrl+e 查看浏览过的历史纪录 <br>
-##10087、还存在问题
-访问时的数据库并发操作<br>
+##Cloud
+1. yum update 升级所有包同时也升级软件和系统内核 // yum upgrade 只升级所有包，不升级软件和系统内核<br>
+2. yum install git; yum install maven 安装git,maven <br>
+3. mkdir App
+4. cd App
+5. git clone https://github.com/sthgreat/JavaWeb_community.git
+6. mvn -v 查版本号
+7. mvn clean compile package
+8. cp src/main/resources/application.properties src/main/resources/application-production.properties
+9. vim src/main/resources/application-production.properties
+
+java -jar -Dspring.profiles.active=production target/web_community-0.0.1-SNAPSHOT.jar 
+ps -aux | grep java
+##命令
+pwd 查看当前位置 <br>
+mkdir 创建文件夹 <br>
+shift + z + z vim保存 

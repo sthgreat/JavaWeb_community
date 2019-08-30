@@ -52,13 +52,7 @@ public class ArticleService {
         }
         paginationDTO.setPagination(totalPage, page);
 
-        Integer offset = null;
-        if(page==0){
-            offset = 0;
-        }else {
-            offset = size * (page - 1);
-        }
-
+        Integer offset = page<1?0:size*(page-1);
         articleQueryDTO.setSize(size);
         articleQueryDTO.setPage(offset);
         List<Article> articles = null;
@@ -97,7 +91,7 @@ public class ArticleService {
         }
 
         paginationDTO.setPagination(totalPage, page);
-        Integer offset = size * (page - 1);
+        Integer offset = page<1?0:size*(page-1);
 
         List<Article> articles = articleMapper.listByUserId(userId, offset, size);
         List<ArticleDTO> articleDTOS = new ArrayList<>();
